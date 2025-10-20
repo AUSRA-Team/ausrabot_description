@@ -1,2 +1,2 @@
-# sirius_simulation
-Simulation of our sirius robots
+# AUSRA bot description
+description of our Ausra robot
