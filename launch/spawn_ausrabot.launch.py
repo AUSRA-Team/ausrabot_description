@@ -22,7 +22,7 @@ def generate_launch_description():
     )
 
     # Path to the robot's xacro file
-    xacro_file = os.path.join(pkg_share, 'urdf', 'ausrabot.xacro')
+    xacro_file = os.path.join(pkg_share, 'urdf', 'ausrabot.urdf.xacro')
     
     # Process the xacro file to generate the URDF
     robot_description_config = xacro.process_file(xacro_file)

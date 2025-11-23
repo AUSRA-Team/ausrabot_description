@@ -8,7 +8,7 @@ def generate_launch_description():
 
     pkg_share = get_package_share_directory('ausrabot_description')
 
-    xacro_file = os.path.join(pkg_share, 'urdf', 'ausrabot.xacro')
+    xacro_file = os.path.join(pkg_share, 'urdf', 'ausrabot.urdf.xacro')
     # Process the xacro file to generate the URDF
     robot_description_config = xacro.process_file(xacro_file)
     robot_description = robot_description_config.toxml()
