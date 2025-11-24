@@ -265,34 +265,12 @@
           filename="package://ausrabot_description/meshes/lidar.STL" />
       </geometry>
     </collision>
-    <!--
-    <sensor name="lidar_sensor" type="gpu_lidar">
-      <pose>0 0 0 0 0 0</pose>
-      <update_rate>10</update_rate>
-      <topic>/scan</topic>
-      <lidar>
-        <scan>
-          <horizontal>
-            <samples>360</samples>
-            <resolution>1</resolution>
-            <min_angle>-3.14159</min_angle>
-            <max_angle>3.14159</max_angle>
-          </horizontal>
-        </scan>
-        <range>
-          <min>0.15</min>
-          <max>12.0</max>
-        </range>
-      </lidar>
-      <visualize>false</visualize>
-    </sensor>
-    -->
   </link>
   <joint
     name="lidar_joint"
     type="fixed">
     <origin
-      xyz="-2.85102614102555E-05 0 0.110598095199185"
+      xyz="-2.85102614102555E-05 0 0.130598095199185"
       rpy="0 0 3.14159265358979" />
     <parent
       link="base_link" />
@@ -389,5 +367,34 @@
       <robot_param_node>robot_state_publisher</robot_param_node>
     </plugin>
   </gazebo>
-  
+
+  <gazebo reference="lidar">
+    <sensor name="lidar" type="gpu_lidar">
+      <pose relative_to='lidar'>0 0 0 0 0 0</pose>
+      <topic>scan</topic> <update_rate>10</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>360</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle>
+            <max_angle>3.14159</max_angle>
+          </horizontal>
+          <vertical>
+            <samples>1</samples> <resolution>1</resolution>
+            <min_angle>0</min_angle>
+            <max_angle>0</max_angle>
+          </vertical>
+        </scan>
+        <range>
+          <min>0.10</min>
+          <max>10.0</max>
+          <resolution>0.01</resolution>
+        </range>
+      </ray>
+      <always_on>1</always_on>
+      <visualize>true</visualize>
+      <gz_frame_id>lidar</gz_frame_id> </sensor>
+  </gazebo>
+
 </robot>
