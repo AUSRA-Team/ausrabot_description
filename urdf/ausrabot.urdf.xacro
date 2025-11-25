@@ -368,10 +368,32 @@
     </plugin>
   </gazebo>
 
+  <!-- OMNI WHEEL FRICTION CORRECTION -->
+  <!-- mu1 = Forward Friction (High), mu2 = Sideways Friction (Low/Slide) -->
+  
+  <gazebo reference="wheel_1">
+    <mu1>1.0</mu1>
+    <mu2>0.001</mu2>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="wheel_2">
+    <mu1>1.0</mu1>
+    <mu2>0.001</mu2>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
+  <gazebo reference="wheel_3">
+    <mu1>1.0</mu1>
+    <mu2>0.001</mu2>
+    <fdir1>1 0 0</fdir1>
+  </gazebo>
+
   <gazebo reference="lidar">
     <sensor name="lidar" type="gpu_lidar">
       <pose relative_to='lidar'>0 0 0 0 0 0</pose>
-      <topic>scan</topic> <update_rate>10</update_rate>
+      <topic>scan</topic>
+      <update_rate>10</update_rate>
       <ray>
         <scan>
           <horizontal>
@@ -381,7 +403,8 @@
             <max_angle>3.14159</max_angle>
           </horizontal>
           <vertical>
-            <samples>1</samples> <resolution>1</resolution>
+            <samples>1</samples>
+            <resolution>1</resolution>
             <min_angle>0</min_angle>
             <max_angle>0</max_angle>
           </vertical>
