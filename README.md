@@ -59,14 +59,18 @@ To launch the Gazebo simulation and spawn the robot into it, run the following c
 ros2 launch ausrabot_description ausrabot_.launch.py
 ```
 
+## Moving the Robot
+
+For installin, launching, controlling and driving the robot, please refer to the omni_controller repository:
+
+[omni_controller](https://github.com/AUSRA-Team/Omni-Directional-Driver)
+
+
+After Installing the omni directional driver and launching it:
 To move the robot in a straight line with a velocity of 0.5 m/s in the x-axis, execute the following command:
 
 ```bash
-ros2 topic pub \
-omnidirectional_controller/cmd_vel_unstamped \
--r 10 \
-geometry_msgs/msg/Twist \
-"{linear: {x: 0.5, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}"
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0}}, {angular: {z: 0.0}}"
 ```
 
 ---
@@ -102,5 +106,4 @@ Insert a **Cylinder** into the Gazebo world and place it within range of the rob
 
 ---
 
-If you want, I can export this as a clean downloadable README.md file.
 
