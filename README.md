@@ -56,7 +56,7 @@ colcon build --symlink-install
 To launch the Gazebo simulation and spawn the robot into it, run the following command:
 
 ```bash
-ros2 launch ausrabot_description ausrabot_.launch.py
+ros2 launch ausrabot_description ausrabot_omni.launch.py
 ```
 
 ## Moving the Robot
