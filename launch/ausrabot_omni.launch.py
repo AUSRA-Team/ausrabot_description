@@ -5,7 +5,6 @@ from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, Regi
 from launch.event_handlers import OnProcessExit
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
-
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 
@@ -90,15 +89,24 @@ def generate_launch_description():
 
     )
 
-    omni_wheels_controller_spawner = Node(
-        package= 'controller_manager',
+    # Joint Group Velocity Controller
+    velocity_controller_spawner = Node(
+        package='controller_manager',
         executable='spawner',
-        arguments=[
-            'omnidirectional_controller',
-            '--param-file',
-            robot_controllers,
-        ] 
-            
+        arguments=['joint_group_velocity_controller', '--param-file', robot_controllers],
+    )
+
+    # YOUR Custom Omni Driver
+    omni_wheels_controller_spawner= Node(
+        package='omnidirectional_driver',
+        executable='omni_driver',
+        name='omnidirectional_driver',
+        output='screen',
+        parameters=[robot_controllers, {'use_sim_time': use_sim_time}],
+        remappings=[
+            ('/cmd_vel', '/cmd_vel'),
+            ('/odom', '/odom')
+        ]
     )
 
     # Clock Bridge (Essential for use_sim_time)
@@ -118,6 +126,12 @@ def generate_launch_description():
         event_handler=OnProcessExit(
             target_action=gz_spawn_entity,
             on_exit=[joint_state_broadcaster_spawner],
+        )
+    )
+    spawn_vel_event = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=joint_state_broadcaster_spawner,
+            on_exit=[velocity_controller_spawner],
         )
     )
 
@@ -141,5 +155,6 @@ def generate_launch_description():
         gz_spawn_entity,
         bridge,
         spawn_broadcaster_event,       # Event Handler 1
+        spawn_vel_event,
         spawn_omni_wheel_controllers_event, # Event Handler 2
     ])
