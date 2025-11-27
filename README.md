@@ -70,7 +70,7 @@ After Installing the omni directional driver and launching it:
 To move the robot in a straight line with a velocity of 0.5 m/s in the x-axis, execute the following command:
 
 ```bash
-ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0}}, {angular: {z: 0.0}}"
+ros2 topic pub /cmd_vel geometry_msgs/msg/Twist "{linear: {x: 0.5, y: 0.0}, angular: {z: 0.0}}"
 ```
 
 ---
