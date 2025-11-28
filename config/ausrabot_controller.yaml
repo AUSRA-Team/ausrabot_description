@@ -25,8 +25,8 @@ omnidirectional_driver:
     # Physical Robot Parameters
     # ----------------------------------------
 
-    robot_radius: 0.115     # Distance from center to wheel contact point
-    wheel_radius: 0.03      # Physical radius of the wheel
+    robot_radius: 0.1105     # Distance from center to wheel contact point
+    wheel_radius: 0.034       # Physical radius of the wheel
     
     wheel_names: 
       - joint_1
@@ -46,3 +46,5 @@ omnidirectional_driver:
     ## For Omni-wheels: 0°
     ## For Mecanum-wheels: 45°
     roller_angle_deg: 0.0
+
+    use_field_centric: false

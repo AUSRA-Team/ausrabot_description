@@ -28,9 +28,6 @@ def generate_launch_description():
         gz_resource_path = os.path.join(pkg_share, '..')
 
     # 2. Set Environment Variables
-    set_ign_resource_path = SetEnvironmentVariable(
-        name='IGN_GAZEBO_RESOURCE_PATH', value=gz_resource_path
-    )
     set_gz_resource_path = SetEnvironmentVariable(
         name='GZ_SIM_RESOURCE_PATH', value=gz_resource_path
     )
@@ -96,7 +93,7 @@ def generate_launch_description():
 
     # 5. YOUR Custom Omni Driver
     custom_omni_driver = Node(
-        package='omnidirectional_driver',
+        package='omnidirectional_driver_cpp',
         executable='omni_driver',
         name='omnidirectional_driver',
         output='screen',
@@ -144,7 +141,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         DeclareLaunchArgument('use_sim_time', default_value='true', description='Use simulation clock'),
-        set_ign_resource_path, # Added IGN path
+        # set_ign_resource_path, # Added IGN path
         set_gz_resource_path,  # Kept GZ path for compatibility
         gazebo,
         node_robot_state_publisher,
