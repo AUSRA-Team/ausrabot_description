@@ -109,14 +109,19 @@ def generate_launch_description():
         ]
     )
 
-    # Clock Bridge (Essential for use_sim_time)
+    # gz bridge node to bridge Gazebo and ROS2 topics
     bridge = Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         arguments=[
             '/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock', # Clock
             '/scan@sensor_msgs/msg/LaserScan[gz.msgs.LaserScan', # LIDAR
-            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU'
+            '/imu@sensor_msgs/msg/Imu[gz.msgs.IMU',
+            # --- NEW CAMERA BRIDGES ---
+            # Image data: specific topic defined in your URDF
+            '/camera/image_raw@sensor_msgs/msg/Image[gz.msgs.Image',
+            # Camera Info: intrinsic matrix/projection data
+            '/camera/camera_info@sensor_msgs/msg/CameraInfo[gz.msgs.CameraInfo'
             ],
         output='screen'
     )

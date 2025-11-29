@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 549
   - Class: rviz_common/Selection
@@ -25,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: LaserScan
+    SyncSource: ""
 Visualization Manager:
   Class: ""
   Displays:
@@ -70,6 +72,15 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        camera_link_optical:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         lidar:
           Alpha: 1
           Show Axes: false
@@ -108,19 +119,51 @@ Visualization Manager:
       Value: true
       Visual Enabled: true
     - Class: rviz_default_plugins/TF
-      Enabled: false
+      Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
+        base_link:
+          Value: false
+        camera_link_optical:
+          Value: true
+        imu_link:
+          Value: false
+        lidar:
+          Value: false
+        oak_camera:
+          Value: false
+        robot_footprint:
+          Value: false
+        wheel_1:
+          Value: false
+        wheel_2:
+          Value: false
+        wheel_3:
+          Value: false
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: false
       Tree:
-        {}
+        robot_footprint:
+          base_link:
+            imu_link:
+              {}
+            lidar:
+              {}
+            oak_camera:
+              camera_link_optical:
+                {}
+            wheel_1:
+              {}
+            wheel_2:
+              {}
+            wheel_3:
+              {}
       Update Interval: 0
-      Value: false
+      Value: true
     - Alpha: 1
       Autocompute Intensity Bounds: true
       Autocompute Value Bounds:
