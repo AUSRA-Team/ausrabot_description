@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="sensors">
+
+    <!-- LiDAR Physical -->
+    <link name="lidar">
+      <inertial>
+        <origin xyz="-0.000173277491394453 -0.00676662791697095 0.00557928889827741" rpy="0 0 0" />
+        <mass value="0.171177012505295" />
+        <inertia ixx="0.000124253941113825" ixy="-4.38664000869312E-07" ixz="-6.40588163757229E-07"
+                 iyy="7.95393375273759E-05" iyz="-2.02744127539845E-05" izz="0.000141905084169328" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ausrabot_description/meshes/lidar.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.25 0.25 0.25 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ausrabot_description/meshes/lidar.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="lidar_joint" type="fixed">
+      <origin xyz="-2.85102614102555E-05 0 0.130598095199185" rpy="0 0 3.14159265358979" />
+      <parent link="base_link" />
+      <child link="lidar" />
+    </joint>
+
+    <!-- OAK Camera Physical -->
+    <link name="oak_camera">
+      <inertial>
+        <origin xyz="2.77555756156289E-17 2.38524477946811E-18 -0.00860000000000001" rpy="0 0 0" />
+        <mass value="0.0417182941210436" />
+        <inertia ixx="2.88248605870479E-05" ixy="-7.46277402243113E-19" ixz="3.67148828118008E-22"
+                 iyy="3.55432167309084E-06" iyz="2.8124140826834E-22" izz="3.03221922380105E-05" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ausrabot_description/meshes/oak_camera.STL" />
+        </geometry>
+        <material name="">
+          <color rgba="0.25 0.25 0.25 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+          <mesh filename="package://ausrabot_description/meshes/oak_camera.STL" />
+        </geometry>
+      </collision>
+    </link>
+    <joint name="oak_joint" type="fixed">
+      <origin xyz="0.000808669644363073 0.103689225067774 0.098888095199185" rpy="1.55867308825253 -1.5707963267949 0" />
+      <parent link="base_link" />
+      <child link="oak_camera" />
+    </joint>
+    
+    <!-- Optical Link (Needed for TF) -->
+    <link name="camera_link_optical"/>
+    <joint name="camera_optical_joint" type="fixed">
+      <parent link="oak_camera"/>
+      <child link="camera_link_optical"/>
+      <origin xyz="0 0 0" rpy="0 3.14 0"/>
+    </joint>
+
+    <!-- IMU Physical -->
+    <link name="imu_link">
+      <visual>
+        <geometry>
+          <box size="0.0001 0.0001 0.0001"/>
+        </geometry>
+        <material name="">
+          <color rgba="1.0 0.0 0.0 1"/> </material>
+      </visual>
+      <collision>
+        <geometry>
+          <box size="0.0001 0.0001 0.0001"/>
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.01"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      </inertial>
+    </link>
+    <joint name="imu_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="imu_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </joint>
+
+  </xacro:macro>
+</robot>
