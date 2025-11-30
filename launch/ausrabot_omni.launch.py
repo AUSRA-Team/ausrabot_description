@@ -12,20 +12,6 @@ def generate_launch_description():
     # Launch Arguments
     use_sim_time = LaunchConfiguration('use_sim_time', default=True)
     pkg_name = 'ausrabot_description' # Ensure this matches your package name
-    pkg_share = get_package_share_directory(pkg_name)
-
-
-    # Set the GZ_SIM_RESOURCE_PATH environment variable
-    if 'GZ_SIM_RESOURCE_PATH' in os.environ:
-        gz_resource_path = os.environ['GZ_SIM_RESOURCE_PATH'] + os.pathsep + os.path.join(pkg_share, '..')
-    else:
-        gz_resource_path = os.path.join(pkg_share, '..')
-
-    set_gz_resource_path = SetEnvironmentVariable(
-        name='GZ_SIM_RESOURCE_PATH',
-        value=gz_resource_path
-    )
-
 
     # Get URDF via xacro
     robot_description_content = Command(
@@ -33,7 +19,7 @@ def generate_launch_description():
             PathJoinSubstitution([FindExecutable(name='xacro')]),
             ' ',
             PathJoinSubstitution(
-                [FindPackageShare(pkg_name), 'urdf', 'ausrabot.urdf.xacro'] # Correct path to your xacro
+                [FindPackageShare(pkg_name), 'urdf', 'ausrabot_full.urdf.xacro'] # Correct path to your xacro
             ),
         ]
     )
@@ -155,7 +141,6 @@ def generate_launch_description():
             'use_sim_time',
             default_value=use_sim_time,
             description='If true, use simulated clock'),
-        set_gz_resource_path,
         gazebo,
         node_robot_state_publisher,
         gz_spawn_entity,
