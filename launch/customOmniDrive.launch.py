@@ -93,7 +93,7 @@ def generate_launch_description():
 
     # 5. YOUR Custom Omni Driver
     custom_omni_driver = Node(
-        package='omnidirectional_driver_cpp',
+        package='omnidirectional_driver',
         executable='omni_driver',
         name='omnidirectional_driver',
         output='screen',
