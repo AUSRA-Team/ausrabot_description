@@ -18,7 +18,6 @@ joint_group_velocity_controller:
       - joint_2
       - joint_3
 
-# Your custom Python driver params
 omnidirectional_driver:
   ros__parameters:
     # ----------------------------------------
