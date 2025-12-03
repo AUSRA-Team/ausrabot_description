@@ -18,14 +18,15 @@ joint_group_velocity_controller:
       - joint_2
       - joint_3
 
-# Your custom Python driver params (Renamed)
 omnidirectional_driver:
   ros__parameters:
     # ----------------------------------------
     # Physical Robot Parameters
     # ----------------------------------------
-    robot_radius: 0.115
-    wheel_radius: 0.03
+
+    robot_radius: 0.1105     # Distance from center to wheel contact point
+    wheel_radius: 0.034       # Physical radius of the wheel
+    
     wheel_names: 
       - joint_1
       - joint_2
@@ -34,5 +35,15 @@ omnidirectional_driver:
     # ----------------------------------------
     # Kinematic Geometry
     # ----------------------------------------
+
+    # Wheel mounting angles (Wheel_frame -> Robot_frame) [degrees]
+    ## 3-wheel omni: 0°, 120°, 240° is standard
+    ## For our robot: 270°, 30°, 150°
     wheel_angles_deg: [270.0, 30.0, 150.0]
+
+    # Omni wheel roller angle (Roller_frame -> Wheel_frame) [degrees]
+    ## For Omni-wheels: 0°
+    ## For Mecanum-wheels: 45°
     roller_angle_deg: 0.0
+
+    use_field_centric: false
