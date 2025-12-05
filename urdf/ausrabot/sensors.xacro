@@ -28,7 +28,8 @@
       </collision>
     </link>
     <joint name="lidar_joint" type="fixed">
-      <origin xyz="-2.85102614102555E-05 0 0.130598095199185" rpy="0 0 0" />
+      <!-- LiDAR joint frame rotated by angle: 180 degrees (pi rad) -->
+      <origin xyz="-2.85102614102555E-05 0 0.130598095199185" rpy="0 0 ${pi}" />
       <parent link="base_link" />
       <child link="lidar" />
     </joint>
@@ -106,7 +107,8 @@
     <joint name="imu_joint" type="fixed">
       <parent link="base_link"/>
       <child link="imu_link"/>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <!-- IMU joint frame rotated by angle: 90 degrees (pi/2 rad) -->
+      <origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
     </joint>
 
   </xacro:macro>

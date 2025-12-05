@@ -32,6 +32,9 @@ omnidirectional_driver:
       - joint_2
       - joint_3
 
+    odom_frame_id: "odom"
+    base_frame_id: "robot_footprint"
+
     # ----------------------------------------
     # Kinematic Geometry
     # ----------------------------------------

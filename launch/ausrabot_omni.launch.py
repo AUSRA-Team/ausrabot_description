@@ -7,6 +7,7 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, FindExecutable, LaunchConfiguration, PathJoinSubstitution
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
+from launch_ros.parameter_descriptions import ParameterValue
 
 def generate_launch_description():
     # Launch Arguments
@@ -14,14 +15,16 @@ def generate_launch_description():
     pkg_name = 'ausrabot_description' # Ensure this matches your package name
 
     # Get URDF via xacro
-    robot_description_content = Command(
+    robot_description_content = ParameterValue(Command(
         [
             PathJoinSubstitution([FindExecutable(name='xacro')]),
             ' ',
             PathJoinSubstitution(
                 [FindPackageShare(pkg_name), 'urdf', 'ausrabot_full.urdf.xacro'] # Correct path to your xacro
             ),
-        ]
+        ],
+    ),
+    value_type=str
     )
     robot_description = {'robot_description': robot_description_content}
     robot_controllers = PathJoinSubstitution(
