@@ -11,7 +11,7 @@
   <joint name="dummy_joint" type="fixed">
       <parent link="robot_footprint"/>
       <child link="base_link"/>
-      <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+      <origin xyz="0 0 0.05" rpy="0 0 0"/>
   </joint>
 
   <xacro:sensors />

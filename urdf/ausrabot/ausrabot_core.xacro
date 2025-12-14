@@ -2,13 +2,14 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:macro name="ausrabot_core">
-    
+
     <link name="base_link">
       <inertial>
-        <origin xyz="0.000132358596962433 0.0107784527153615 0.0455578201137751" rpy="0 0 0" />
-        <mass value="0.545316432015797" />
-        <inertia ixx="0.00232840648283892" ixy="7.82952052633134E-08" ixz="-2.35921291442106E-08"
-                 iyy="0.00246732309842302" iyz="-2.45394203695068E-06" izz="0.00451259615315152" />
+        <origin xyz="-0.00177767886836495 -7.08145711406941E-05 0.0345244109350669" rpy="0 0 0" />
+        <mass value="0.749591825708612" />
+        <inertia
+          ixx="0.00560242940522896" ixy="-3.10886247756778E-06" ixz="7.02379711896478E-05"
+          iyy="0.00543989398233584" iyz="-2.42126647279533E-17" izz="0.00951025265754031" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -29,10 +30,11 @@
 
     <link name="wheel_1">
       <inertial>
-        <origin xyz="-6.11585138939009E-07 2.40519083084118E-06 0.00687917878282576" rpy="0 0 0" />
-        <mass value="0.037694823031467" />
-        <inertia ixx="3.0972076096957E-06" ixy="2.84246335131892E-11" ixz="-2.16478688549662E-10"
-                 iyy="3.09696234654175E-06" iyz="8.51072894756962E-10" izz="5.34864718246412E-06" />
+        <origin xyz="1.0863E-06 -2.2552E-06 0.0075339" rpy="0 0 0" />
+        <mass value="0.039266" />
+        <inertia
+          ixx="3.5298E-06" ixy="1.754E-10" ixz="1.4711E-10"
+          iyy="3.5298E-06" iyz="-1.6617E-10" izz="5.3943E-06" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -46,7 +48,7 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <cylinder radius="0.034" length="0.015"/>
+          <mesh filename="package://ausrabot_description/meshes/wheel_1.STL" />
         </geometry>
         <surface> 
           <friction>
@@ -58,8 +60,9 @@
         </surface>  
       </collision>
     </link>
+
     <joint name="joint_1" type="continuous">
-      <origin xyz="0.00131071109492098 0.110453635935089 -0.0161803398874989" rpy="1.5707963267949 0 3.12946941504743" />
+      <origin xyz="0.12368 -0.00013859 -0.019" rpy="1.5708 0 1.5708" />
       <parent link="base_link" />
       <child link="wheel_1" />
       <axis xyz="0 0 1" />
@@ -67,10 +70,11 @@
 
     <link name="wheel_2">
       <inertial>
-        <origin xyz="-2.22775634618061E-06 -1.09358984268573E-06 0.006879178822061" rpy="0 0 0" />
-        <mass value="0.0376948232954181" />
-        <inertia ixx="3.09702282374251E-06" ixy="-3.32677650778434E-11" ixz="-7.88279016321689E-10"
-                 iyy="3.09712667239217E-06" iyz="-3.87033927352786E-10" izz="5.34862673117426E-06" />
+        <origin xyz="1.0862E-06 -2.255E-06 0.0075339" rpy="0 0 0" />
+        <mass value="0.039266" />
+        <inertia
+          ixx="3.5297E-06" ixy="3.9609E-11" ixz="1.471E-10"
+          iyy="3.5297E-06" iyz="-1.6617E-10" izz="5.3942E-06" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -78,13 +82,13 @@
           <mesh filename="package://ausrabot_description/meshes/wheel_2.STL" />
         </geometry>
         <material name="">
-          <color rgba="0.0 0.0 1.0 1" />
+           <color rgba="0.0 0.0 1.0 1" />
         </material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <cylinder radius="0.034" length="0.015"/>
+          <mesh filename="package://ausrabot_description/meshes/wheel_2.STL" />
         </geometry>
         <surface> 
           <friction>
@@ -96,8 +100,9 @@
         </surface>  
       </collision>
     </link>
+
     <joint name="joint_2" type="continuous">
-      <origin xyz="-0.0963609169452294 -0.0540793874249231 -0.016180339887499" rpy="1.5707963267949 0 -1.05932078973896" />
+      <origin xyz="-0.062025 0.10707 -0.019" rpy="1.5708 0 -2.618" />
       <parent link="base_link" />
       <child link="wheel_2" />
       <axis xyz="0 0 1" />
@@ -105,10 +110,11 @@
 
     <link name="wheel_3">
       <inertial>
-        <origin xyz="2.39002105834052E-06 6.6831361357142E-07 0.00687917877739805" rpy="0 0 0" />
-        <mass value="0.0376948233023577" />
-        <inertia ixx="3.09710830531407E-06" ixy="8.8846112421192E-12" ixz="8.45711274919436E-10"
-                 iyy="3.0971477806935E-06" iyz="2.36549362165485E-10" izz="5.34873332719162E-06" />
+        <origin xyz="1.0862E-06 -2.2551E-06 0.0075339" rpy="0 0 0" />
+        <mass value="0.039266" />
+        <inertia
+          ixx="3.5297E-06" ixy="6.0263E-11" ixz="1.471E-10"
+          iyy="3.5296E-06" iyz="-1.6618E-10" izz="5.3941E-06" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -116,13 +122,13 @@
           <mesh filename="package://ausrabot_description/meshes/wheel_3.STL" />
         </geometry>
         <material name="">
-          <color rgba="0.0 0.0 1.0 1" />
+           <color rgba="0.0 0.0 1.0 1" />
         </material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0" />
         <geometry>
-            <cylinder radius="0.034" length="0.015"/>
+          <mesh filename="package://ausrabot_description/meshes/wheel_3.STL" />
         </geometry>
         <surface> 
           <friction>
@@ -134,8 +140,9 @@
         </surface>  
       </collision>
     </link>
+
     <joint name="joint_3" type="continuous">
-      <origin xyz="0.0949646750660746 -0.0563989868566714 -0.016180339887499" rpy="1.5707963267949 0 1.03507431265423" />
+      <origin xyz="-0.062024 -0.10735 -0.019" rpy="1.5708 0 -0.5236" />
       <parent link="base_link" />
       <child link="wheel_3" />
       <axis xyz="0 0 1" />

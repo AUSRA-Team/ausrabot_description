@@ -6,10 +6,11 @@
     <!-- LiDAR Physical -->
     <link name="lidar">
       <inertial>
-        <origin xyz="-0.000173277491394453 -0.00676662791697095 0.00557928889827741" rpy="0 0 0" />
-        <mass value="0.171177012505295" />
-        <inertia ixx="0.000124253941113825" ixy="-4.38664000869312E-07" ixz="-6.40588163757229E-07"
-                 iyy="7.95393375273759E-05" iyz="-2.02744127539845E-05" izz="0.000141905084169328" />
+        <origin xyz="0.0067682 -0.00020713 -0.022521" rpy="0 0 0" />
+        <mass value="0.17118" />
+        <inertia
+          ixx="7.9535E-05" ixy="-1.035E-07" ixz="2.0281E-05"
+          iyy="0.00012426" iyz="-3.9476E-07" izz="0.00014191" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -17,7 +18,7 @@
           <mesh filename="package://ausrabot_description/meshes/lidar.STL" />
         </geometry>
         <material name="">
-          <color rgba="0.25 0.25 0.25 1" />
+          <color rgba="0.79216 0.81961 0.93333 1" />
         </material>
       </visual>
       <collision>
@@ -27,19 +28,21 @@
         </geometry>
       </collision>
     </link>
+
     <joint name="lidar_joint" type="fixed">
-      <origin xyz="-2.85102614102555E-05 0 0.130598095199185" rpy="0 0 0" />
+      <origin xyz="-0.00012313 -2.5346E-05 0.1797" rpy="0 0 0" />
       <parent link="base_link" />
       <child link="lidar" />
+      <axis xyz="0 0 0" />
     </joint>
 
-    <!-- OAK Camera Physical (from CAD) -->
-    <link name="oak_camera">
+<link name="oak_camera">
       <inertial>
-        <origin xyz="2.77555756156289E-17 2.38524477946811E-18 -0.00860000000000001" rpy="0 0 0" />
-        <mass value="0.0417182941210436" />
-        <inertia ixx="2.88248605870479E-05" ixy="-7.46277402243113E-19" ixz="3.67148828118008E-22"
-                 iyy="3.55432167309084E-06" iyz="2.8124140826834E-22" izz="3.03221922380105E-05" />
+        <origin xyz="-0.0086 -5.8579E-18 0" rpy="0 0 0" />
+        <mass value="0.041718" />
+        <inertia
+          ixx="3.0322E-05" ixy="-8.0273E-23" ixz="-4.5515E-23"
+          iyy="3.5543E-06" iyz="-4.7563E-21" izz="2.8825E-05" />
       </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -47,7 +50,7 @@
           <mesh filename="package://ausrabot_description/meshes/oak_camera.STL" />
         </geometry>
         <material name="">
-          <color rgba="0.25 0.25 0.25 1" />
+          <color rgba="0.25098 0.25098 0.25098 1" />
         </material>
       </visual>
       <collision>
@@ -57,31 +60,31 @@
         </geometry>
       </collision>
     </link>
+
     <joint name="oak_joint" type="fixed">
-      <!-- CORRECTED: Changed from rpy="0 ${pi/2} ${pi/2}" to rpy="0 0 ${pi/2}" -->
-      <!-- This rotates oak_camera so its +X axis points in base_link +Y direction (forward) -->
-      <origin xyz="0.000808669644363073 0.103689225067774 0.098888095199185" rpy="0 ${pi/2} ${pi/2}" />
+      <origin xyz="0.12008 -0.00013908 0.12046" rpy="0 0 0" />
       <parent link="base_link" />
       <child link="oak_camera" />
-    </joint>
-    
+      <axis xyz="0 0 0" />
+    </joint>    
+
     <!-- Camera Link (standard ROS body frame: X forward, Y left, Z up) -->
     <link name="camera_link"/>
     <joint name="camera_link_joint" type="fixed">
       <parent link="oak_camera"/>
       <child link="camera_link"/>
-      <origin xyz="0 0 0" rpy="${pi/2} -${pi/2} -${pi/2}"/>
+      <origin xyz="0 0 0" rpy="0 ${pi/2} 0"/>
     </joint>
     
     <!-- Optical Frame (camera convention: Z forward/depth, X right, Y down) -->
     <!-- CORRECTED: Standard ROS body-to-optical transformation -->
     <link name="camera_link_optical"/>
     <joint name="camera_optical_joint" type="fixed">
-      <parent link="oak_camera"/>
+      <parent link="camera_link"/>
       <child link="camera_link_optical"/>
       <!-- Transform from oak_camera body frame (X=forward, Y=left, Z=up) 
            to optical frame (Z=forward, X=right, Y=down) -->
-      <origin xyz="0 0 0" rpy="${pi/2} ${pi/2} -${pi/2}"/>
+      <origin xyz="0 0 0" rpy="0 0 -${pi/2}"/>
     </joint>
 
     <!-- IMU Physical -->

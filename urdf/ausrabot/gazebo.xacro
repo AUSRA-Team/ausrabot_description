@@ -60,7 +60,7 @@
     <!-- LiDAR Plugin -->
     <gazebo reference="lidar">
       <sensor name="lidar" type="gpu_lidar">
-        <pose>0 0 0 0 0 ${pi}</pose>
+        <pose>0 0 0 0 0 0</pose>
         <topic>scan</topic>
         <update_rate>10</update_rate>
         <ray>
