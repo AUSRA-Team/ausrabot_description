@@ -104,17 +104,16 @@
     </gazebo>
 
     <!-- RGBD Camera Plugin (Oak-D Lite) -->
-    <!-- CORRECTED: Changed pose from "0 0 0 0 -${pi/2} 0" to "0 0 0 0 0 0" -->
-    <!-- Gazebo camera sensors look along +X axis, which now correctly aligns with oak_camera +X (forward) -->
+
     <gazebo reference="oak_camera">
       <sensor name="oak_d_lite_rgbd" type="rgbd_camera">
-        <pose>0 0 0 0 -${pi/2} 0</pose>
+        <pose>0 0 0 0 0 0</pose>
         <always_on>true</always_on>
         <update_rate>30.0</update_rate>
         <visualize>true</visualize>
         <topic>rgbd_camera</topic>
         <!-- Frame ID sets the Header.stamp in ROS. Matches the Optical Frame TF -->
-        <gz_frame_id>camera_link_optical</gz_frame_id>
+        <gz_frame_id>oak_camera</gz_frame_id>
         <camera name="oak_d_lite">
           <horizontal_fov>1.20428</horizontal_fov>
           <lens>
